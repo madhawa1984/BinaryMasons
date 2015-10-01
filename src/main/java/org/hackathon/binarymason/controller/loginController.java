@@ -51,8 +51,8 @@ public class loginController {
         // mv.addObject("name", name);
         return mv;
     }
-
-    @RequestMapping(value = "/ui/loginPost", method = RequestMethod.POST)
+    // value = "/ui/loginPost"
+    @RequestMapping(value = "/ui/login", method = RequestMethod.POST)
     public ModelAndView showMessage(Model model,
                                     HttpServletRequest req, HttpServletResponse res, Map<String, String[]> paramMap) throws Exception {
         System.out.println("in controller");
