@@ -27,4 +27,8 @@ public class HelloController {;
         return "sock";
     }
 
+    @RequestMapping(value = "/editor", method = RequestMethod.GET)
+    public String editor(ModelMap model) {
+        return "editor";
+    }
 }

@@ -41,6 +41,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/libs/**").addResourceLocations("/libs/");
         registry.addResourceHandler("/app/**").addResourceLocations("/app/");
         registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
+        registry.addResourceHandler("/css/**").addResourceLocations("WEB-INF/views/css/");
+        registry.addResourceHandler("/scripts/**").addResourceLocations("WEB-INF/views/scripts/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("WEB-INF/views/fonts/");
+        registry.addResourceHandler("/bootstrap-3.3.5-dist/**").addResourceLocations("WEB-INF/views/bootstrap-3.3.5-dist/");
     }
 
     @Override

@@ -26,9 +26,9 @@
       console.log("Disconnected");
     }
 
-    function sendName() {
-      var name = document.getElementById('name').value;
-      stompClient.send("/app/socket", {}, JSON.stringify({ 'content': name }));
+    function sendOperation(){
+        var name = document.getElementById('name').value;
+        stompClient.send("/app/socket", {}, JSON.stringify({ 'content': name }));
     }
 
     function doObjectOperation(message) {
@@ -45,8 +45,8 @@
   Javascript and reload this page!</h2></noscript>
 <div>
    <div id="conversationDiv">
-    <label>What is your name?</label><input type="text" id="name" />
-    <button id="sendName" onclick="sendName();">Send</button>
+    <input type="text" id="name" />
+    <button id="sendName" onclick="sendOperation();">Send</button>
     <p id="response"></p>
   </div>
 </div>
