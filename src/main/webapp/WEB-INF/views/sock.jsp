@@ -28,7 +28,7 @@
 
     function sendName() {
       var name = document.getElementById('name').value;
-      stompClient.send("/app/socket", {}, JSON.stringify({ 'name': name }));
+      stompClient.send("/app/socket", {}, JSON.stringify({ 'content': name }));
     }
 
     function doObjectOperation(message) {
