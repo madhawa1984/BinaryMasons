@@ -33,6 +33,15 @@ public class loginController {
     @Autowired
     private Credentials credentialBean;
 
+    @RequestMapping(value = "/CameraConference", method = RequestMethod.GET)
+    public ModelAndView showCameraConferencePage(Model model,
+                                        HttpServletRequest req, HttpServletResponse res, Map<String, String[]> paramMap) throws Exception {
+        System.out.println("in controller");
+        ModelAndView mv = new ModelAndView("CameraConference");
+        mv.addObject("message", message);
+        // mv.addObject("name", name);
+        return mv;
+    }
     @RequestMapping(value = "/au/success", method = RequestMethod.GET)
     public ModelAndView showSuccessPage(Model model,
                                         HttpServletRequest req, HttpServletResponse res, Map<String, String[]> paramMap) throws Exception {
