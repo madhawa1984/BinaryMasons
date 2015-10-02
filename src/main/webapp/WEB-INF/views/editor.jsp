@@ -2,8 +2,8 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-  		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.css">
+  		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
   		<style type="text/css">
   			.container-fluid{border-width: 1px; border-style: solid;margin: 5px; padding: 5px;}
   			.boder{border-width: 1px; border-style:solid;}
@@ -97,12 +97,12 @@
 
 
 
-		<script type="text/javascript" src="scripts/jquery-2.1.4.min.js" ></script>
-		<script type="text/javascript" src="scripts/jquery-ui.js" ></script>
-		<script type="text/javascript" src="scripts/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-ui.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/bootstrap.min.js" ></script>
 		<script src="http://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-		<script type="text/javascript" src="/scripts/operations.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/operations.js"></script>
 		<script type="text/javascript">
              String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
 			 $(function() {
@@ -150,6 +150,12 @@
 			    	}
 			    });
 			});
+			//disable f5 button
+			 function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+
+			 $(document).ready(function(){
+				 $(document).on("keydown", disableF5);
+			 });
 		</script>
 	</body>
 </html>

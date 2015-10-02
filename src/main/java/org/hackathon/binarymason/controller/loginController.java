@@ -46,7 +46,8 @@ public class loginController {
     public ModelAndView showSuccessPage(Model model,
                                         HttpServletRequest req, HttpServletResponse res, Map<String, String[]> paramMap) throws Exception {
         System.out.println("in controller");
-        ModelAndView mv = new ModelAndView("success");
+        // ModelAndView mv = new ModelAndView("success");
+        ModelAndView mv = new ModelAndView("editor");
         mv.addObject("message", message);
         // mv.addObject("name", name);
         return mv;
@@ -55,7 +56,7 @@ public class loginController {
     public ModelAndView showloginPage(Model model,
                                       HttpServletRequest req, HttpServletResponse res, Map<String, String[]> paramMap) throws Exception {
         System.out.println("in controller");
-        ModelAndView mv = new ModelAndView("login");
+        ModelAndView mv = new ModelAndView("login"); //mcp xxx-1
         mv.addObject("message", message);
         // mv.addObject("name", name);
         return mv;
@@ -83,7 +84,7 @@ public class loginController {
         }
         System.out.println("xxx-1");
         if (authorised) {
-            redirectpoint="success";
+            redirectpoint="editor";
             session.setAttribute("onlineStatus","online");
             session.setAttribute("loggedInUser",userName);
 
