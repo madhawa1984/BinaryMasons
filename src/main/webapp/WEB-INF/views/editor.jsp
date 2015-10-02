@@ -14,6 +14,73 @@
 	<body>
 	<div class="container-fluid row">
 		<div class="col-md-9" id="editorContainer">
+            <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-2.1.4.min.js" ></script>
+            <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-ui.js" ></script>
+            <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/bootstrap.min.js" ></script>
+            <script src="http://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+            <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/operations.js"></script>
+            <script type="text/javascript">
+                String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+                $(function() {
+                    $( ".dragable").draggable({revert: "invalid"});
+                    $("#draggableInputText-0").draggable({ cancel: null },{revert: "invalid"});
+                    $("#draggableInputTextArea-0").draggable({ cancel: null },{revert: "invalid"});
+                    $( "#droppableArea" ).droppable({
+                        drop: function( event, ui ){
+                            //console.log(ui.draggable);
+                            var parentElementID = ui.draggable.parent().attr('id');
+                            var idElements = ui.draggable.attr('id').split('-');
+                            var iDIndex = (parseInt(idElements[1]) + 1 );
+
+                            if(parentElementID.contains("draggableButtonContainer")){
+                                $('<div id="draggableButton-' + iDIndex +'"  class="btn btn-default dragable">Button </div>').appendTo("#" + parentElementID).draggable({revert: "invalid"}).resizable({
+                                            start:function(event,ui){
+                                                ui.element.css('position','relative');
+                                            }}
+                                );
+                                $("#droppableArea").append(ui.draggable.context);
+                                sendOperation();
+                            }
+                            else if(parentElementID.contains("draggableLinkContainer")){
+                                $('<a id="draggableLink-' + iDIndex +'"  class="btn btn-link dragable">Link </a>').appendTo("#" + parentElementID).draggable({revert: "invalid"});
+                                $('[data-toggle="popover"]').popover();
+                                $("#droppableArea").append(ui.draggable.context);
+                                sendOperation();
+                            }
+                            else if(parentElementID.contains("draggableLableContainer")){
+                                var parentIdElements = parentElementID.split('-');
+                                var parentIDIndex = parseInt(parentIdElements[1]);
+                                $('<div id="draggableLable-' + iDIndex +'"  class="dragable"><h'+ parentIDIndex +'>Default lable</h'+ parentIDIndex +'></div>').appendTo("#" + parentElementID).draggable({revert: "invalid"})
+                                $("#droppableArea").append(ui.draggable.context)
+                                sendOperation();
+                            }
+                            else if(parentElementID.contains("draggableInputTextContainer")){
+                                $('<div id="draggableInputText-' + iDIndex +'" ><form><input type="text" class="form-control" placeholder="Input"></form></div>').appendTo("#" + parentElementID).draggable({ cancel: null },{revert: "invalid"});
+                                console.log(ui.draggable.context);
+                                $("#droppableArea").append(ui.draggable.context);
+                                sendOperation();
+                            }
+                            else if(parentElementID.contains("draggableInputTextAreaContainer")){
+                                $('<div id="draggableInputTextArea-' + iDIndex +'" ><form><textarea class="form-control" rows="3" placeholder="Input Text Area"></textarea></form></div>').appendTo("#" + parentElementID).draggable({ cancel: null },{revert: "invalid"});
+                                console.log(ui.draggable.context);
+                                $("#droppableArea").append(ui.draggable.context);
+                                sendOperation();
+                            } else {
+                                sendOperation();
+                            }
+
+                        }
+                    });
+                });
+                //disable f5 button
+                function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+
+                $(document).ready(function(){
+                    $(document).on("keydown", disableF5);
+                });
+            </script>
+
 			<div class="col-md-3 boder">
 				<ul class="list-group">
 				  <li class="list-group-item">
@@ -86,7 +153,7 @@
 			</div>
 			<div class="boder col-md-9" id="droppableArea">
 			</div>
-	
+
 		</div>
 		<div class="col-md-3 boder" style="height:1007px;" id="chatContainer">
 		&nbsp;&nbsp;
@@ -97,65 +164,6 @@
 
 
 
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-2.1.4.min.js" ></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-ui.js" ></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/bootstrap.min.js" ></script>
-		<script src="http://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/operations.js"></script>
-		<script type="text/javascript">
-             String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
-			 $(function() {
-			    $( ".dragable").draggable({revert: "invalid"});
-			    $("#draggableInputText-0").draggable({ cancel: null },{revert: "invalid"});
-			    $("#draggableInputTextArea-0").draggable({ cancel: null },{revert: "invalid"});
-			    $( "#droppableArea" ).droppable({
-			    	drop: function( event, ui ){
-			    		//console.log(ui.draggable);
-			    		var parentElementID = ui.draggable.parent().attr('id');
-			    		var idElements = ui.draggable.attr('id').split('-');
-			    		var iDIndex = (parseInt(idElements[1]) + 1 );
 
-			    		if(parentElementID.contains("draggableButtonContainer")){
-				    		$('<div id="draggableButton-' + iDIndex +'"  class="btn btn-default dragable">Button </div>').appendTo("#" + parentElementID).draggable({revert: "invalid"}).resizable({
-					    		start:function(event,ui){
-						            ui.element.css('position','relative');
-						        }}
-					    	);
-							$("#droppableArea").append(ui.draggable.context);
-                            sendOperation();
-			    		}
-			    		else if(parentElementID.contains("draggableLinkContainer")){
-				    		$('<a id="draggableLink-' + iDIndex +'"  class="btn btn-link dragable">Link </a>').appendTo("#" + parentElementID).draggable({revert: "invalid"});
-				    		$('[data-toggle="popover"]').popover();   
-							$("#droppableArea").append(ui.draggable.context);
-			    		}
-			    		else if(parentElementID.contains("draggableLableContainer")){
-			    				var parentIdElements = parentElementID.split('-');
-			    				var parentIDIndex = parseInt(parentIdElements[1]);
-							$('<div id="draggableLable-' + iDIndex +'"  class="dragable"><h'+ parentIDIndex +'>Default lable</h'+ parentIDIndex +'></div>').appendTo("#" + parentElementID).draggable({revert: "invalid"})
-							$("#droppableArea").append(ui.draggable.context)
-			    		}
-			    		else if(parentElementID.contains("draggableInputTextContainer")){
-				    		$('<div id="draggableInputText-' + iDIndex +'" ><form><input type="text" class="form-control" placeholder="Input"></form></div>').appendTo("#" + parentElementID).draggable({ cancel: null },{revert: "invalid"});
-				    		console.log(ui.draggable.context);
-							$("#droppableArea").append(ui.draggable.context);
-			    		}
-			    		else if(parentElementID.contains("draggableInputTextAreaContainer")){
-				    		$('<div id="draggableInputTextArea-' + iDIndex +'" ><form><textarea class="form-control" rows="3" placeholder="Input Text Area"></textarea></form></div>').appendTo("#" + parentElementID).draggable({ cancel: null },{revert: "invalid"});
-				    		console.log(ui.draggable.context);
-							$("#droppableArea").append(ui.draggable.context);
-			    		}
-
-			    	}
-			    });
-			});
-			//disable f5 button
-			 function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
-
-			 $(document).ready(function(){
-				 $(document).on("keydown", disableF5);
-			 });
-		</script>
 	</body>
 </html>
