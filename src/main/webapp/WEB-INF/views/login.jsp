@@ -6,7 +6,7 @@
       if(request.getServerPort() != 80 && request.getServerPort() != 443){
         url = url + ":" + request.getServerPort();
       }
-      url = url + "/BinaryMasons/au/success";
+      url = url + "/au/success";
       response.sendRedirect(url);
     }
     System.out.println("onlinestatus --- jsp "+onlinestatus);
@@ -146,7 +146,7 @@
           <div class="row">
             <div class="col-lg-12">
               <!--/BinaryMasons/ui/loginPost -->
-              <form id="login-form" name="login" onsubmit="validateForm()" action="/BinaryMasons/ui/login" method="post" role="form" style="display: block;">
+              <form id="login-form" name="login" onsubmit="validateForm()" action="/ui/login" method="post" role="form" style="display: block;">
                 <div class="form-group">
                   <input type="text" name="UNAME" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                 </div>

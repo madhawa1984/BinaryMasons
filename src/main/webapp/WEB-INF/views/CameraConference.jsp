@@ -71,7 +71,6 @@
          <a href="https://github.com/muaz-khan/WebRTC-Experiment/commits/master" target="_blank">What's New?</a>
      </p>-->
   </header>
-  <div class="github-stargazers"></div>
   <!-- just copy this <section> and next script -->
 
   <div>

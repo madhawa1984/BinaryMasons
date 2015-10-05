@@ -26,7 +26,7 @@ public class AuthenticationFilter implements Filter {
                 System.out.println("---xxx---"+online);
                 chain.doFilter(req,resp);
             }else {
-                httpResponse.sendRedirect("/BinaryMasons/ui/login");
+                httpResponse.sendRedirect("/ui/login");
             }
 
             // chain.doFilter(req, resp);

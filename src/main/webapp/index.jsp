@@ -131,7 +131,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <!-- action="/BinaryMasons/ui/loginPost" -->
-                            <form id="login-form" name="login" onsubmit="validateForm()" action="/BinaryMasons/ui/login" method="post" role="form" style="display: block;">
+                            <form id="login-form" name="login" onsubmit="validateForm()" action="/ui/login" method="post" role="form" style="display: block;">
                                 <div class="form-group">
                                     <input type="text" name="UNAME" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                 </div>

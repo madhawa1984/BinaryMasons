@@ -15,10 +15,8 @@ import org.hackathon.binarymason.utils.Credentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +45,7 @@ public class loginController {
                                         HttpServletRequest req, HttpServletResponse res, Map<String, String[]> paramMap) throws Exception {
         System.out.println("in controller");
         // ModelAndView mv = new ModelAndView("success");
-        ModelAndView mv = new ModelAndView("editor");
+        ModelAndView mv = new ModelAndView("2editor");
         mv.addObject("message", message);
         // mv.addObject("name", name);
         return mv;
